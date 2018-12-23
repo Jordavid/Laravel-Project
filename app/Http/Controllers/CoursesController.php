@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Course;
 use Illuminate\Http\Request;
 
 class CoursesController extends Controller
@@ -11,19 +12,9 @@ class CoursesController extends Controller
         return view('course');
     }
 
-    public function store(){
+    public function store( Request $req){
 
-        $course = new \App\Course();
-
-        $course->name = request('name');
-
-        $course->hours = request('hours');
-
-        $course->price = request('price');
-
-        $course->description = request('description');
-
-        $course->save();
+        Course::create($req->all());
 
         return redirect('courses');
     }

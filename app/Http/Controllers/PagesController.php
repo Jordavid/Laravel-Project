@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
@@ -49,7 +50,7 @@ class PagesController extends Controller
 
     public function users(){
 
-        $users = \App\User::all();
+        $users = User::all();
 
        return view('users', compact('users'));
     }
