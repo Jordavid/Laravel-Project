@@ -45,7 +45,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-home"></span></a>
+                <a class="navbar-brand" href="home"><span class="glyphicon glyphicon-home"></span></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -84,21 +84,32 @@
 
                 <div class="form-group">
                     <label for="name">Course Name</label>
-                    <input type="text" id="name" v-model="name" class="form-control" placeholder="Course name" name="name" value="<?= (isset($_POST['name']))? $_POST['name'] : '';?>">
+                    <input type="text" id="name" v-model="name" class="form-control" placeholder="Course name" name="name" value="{{old('name')}}">
 
                     <label for="hours">Hours</label>
-                    <input type="number" placeholder="Course Hours" class="form-control" name="hours">
+                    <input type="number" placeholder="Course Hours" class="form-control" name="hours" value="{{old('hours')}}">
 
                     <label for="price">Price</label>
-                    <input type="number" placeholder="Course Price" class="form-control" name="price">
+                    <input type="number" placeholder="Course Price" class="form-control" name="price" value="{{old('price')}}">
 
                     <label for="description">Description</label>
-                    <textarea name="description" id="description" cols="30" rows="10" class="form-control"></textarea>
+                    <textarea name="description" id="description" cols="30" rows="10" class="form-control">{{old('description')}}</textarea>
 
                     <br>
 
                     <button type="submit" class="btn btn-primary btn-block" name="b_reg">Add Course</button>
                 </div>
+                @if($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach($errors->all() as $error )
+                                <li>
+                                    {{$error}}
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
             </form>
             <!--<a href="index.php"><button type="button" class="btn btn-primary btn-block">Home</button></a>-->
         </div>
@@ -111,10 +122,10 @@
     </footer>
 </div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery.js"></script>
+<script src="{{asset('js/jquery.js')}}"></script>
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/bootstrap.min.js"></script>
+<script src="{{asset('js/bootstrap.min.js')}}"></script>
 
 </body>
 </html>

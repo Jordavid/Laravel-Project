@@ -45,6 +45,7 @@
 
         table tbody tr:hover{
             background: white;
+            cursor: pointer;
         }
 
         table tbody tr:hover td{
@@ -75,7 +76,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-home"></span></a>
+                <a class="navbar-brand" href="home"><span class="glyphicon glyphicon-home"></span></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -103,12 +104,15 @@
 
         </div><!-- /.container-fluid -->
     </nav>
+    </div>
+
+    <div class="container">
     <div class="row">
         <div class="col-xs-12 col-xs-offset-0" style="border: 1px dashed white; margin-top: 8px; background: #122b40; border-radius: 10px;">
             <h2 class="text-center" style="color: cornsilk; font-weight: 800">Courses <span class="glyphicon glyphicon-hand-down"></span> </h2>
             <hr class="dl-horizontal">
 
-            <table class="table table-bordered">
+            <table class="table table-responsive">
                 <thead>
                 <th></th>
                 <th>ID</th>
@@ -116,6 +120,7 @@
                 <th>Hours</th>
                 <th>Price</th>
                 <th>Description</th>
+                <th>Actions</th>
                 </thead>
                 <tbody>
                 @foreach( $courses as $course )
@@ -126,6 +131,9 @@
                         <td> {{ $course->hours }} </td>
                         <td> {{ $course->price }} </td>
                         <td> {{ $course->description }} </td>
+                        <td style="text-align: center;"><a href="course/{{$course->id}}/update" class="btn btn-info glyphicon glyphicon-eye-open"></a>
+                            <a href="course/{{$course->id}}/delete" class="btn btn-danger glyphicon glyphicon-trash"></a>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>

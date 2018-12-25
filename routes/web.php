@@ -25,10 +25,17 @@ Route::get('/add', 'PagesController@add');
 
 Route::post('/add', 'PagesController@store');
 
-Route::get('/course', 'CoursesController@course');
+Route::get('/course', 'CoursesController@course')->middleware('auth');
 
 Route::post('/course', 'CoursesController@store');
 
 Route::get('/courses', 'CoursesController@courses');
 
+Route::get('/course/{course_id}/update', 'CoursesController@update');
 
+Route::get('/course/{course_id}/delete', 'CoursesController@destroy');
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

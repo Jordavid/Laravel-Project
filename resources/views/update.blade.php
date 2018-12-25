@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Users</title>
+    <title>Add Course</title>
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -20,20 +20,9 @@
             background: black;
         }
 
-        label, thead, th, tbody, td{
+        label{
             color: white;
         }
-
-        tr:nth-child(even) {
-            background: cadetblue;
-            color: palegoldenrod;
-        }
-
-        thead th{
-            text-align: center;
-        }
-
-
     </style>
 </head>
 <body>
@@ -85,50 +74,47 @@
         </div><!-- /.container-fluid -->
     </nav>
     <div class="row">
-        <div class="col-xs-8 col-xs-offset-2" style="border: 1px dashed white; margin-top: 8px; background: #122b40; border-radius: 10px;">
-            <h2 class="text-center" style="color: white; font-weight: 800">Users <span class="glyphicon glyphicon-hand-down"></span> </h2>
+        <div class="col-xs-6 col-xs-offset-3" style="border: 1px dashed white; margin-top: 8px; background: #122b40; border-radius: 10px;">
+            <h2 class="text-center" style="color: white; font-weight: 800">Update Course <span class="glyphicon glyphicon-hand-down"></span> </h2>
+            <p style="color: white; font-weight: bold;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. At commodi cupiditate dolorum est explicabo ipsam maiores molestiae mollitia recusandae temporibus. Amet aperiam eos labore maxime neque nostrum placeat temporibus vitae?</p>
             <hr class="dl-horizontal">
+            <form action="/course" method="POST">
 
-            <table class="table table-bordered">
-                <thead>
-                <th></th>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Password</th>
-                <th>Actions</th>
-                </thead>
-                <tbody>
-                @foreach( $users as $user )
-                <tr>
-                    <td><span class="glyphicon glyphicon-user"></span></td>
-                    <td> {{ $user->id }}</td>
-                    <td> {{ $user->name }} </td>
-                    <td> {{ $user->email }} </td>
-                    <td> {{ md5($user->password) }} </td>
-                    <td style="text-align: center;"><a href="#" class="btn btn-info glyphicon glyphicon-eye-open"></a>
-                        <a href="" class="btn btn-danger glyphicon glyphicon-trash"></a>
-                    </td>
+                {{csrf_field()}}
 
-                </tr>
-                @endforeach
-                </tbody>
-            </table>
-            <!-- <a href="register.php"><button type="button" class="btn btn-primary btn-block">Back to registration page</button></a>
-             <a href="index.php"><button type="button" class="btn btn-primary btn-block">Back to Homepage</button></a>-->
+                <div class="form-group">
+                    <label for="name">Course Name</label>
+                    <input type="text" id="name" v-model="name" class="form-control" placeholder="Course name" name="name" value="{{$course->name}}">
+
+                    <label for="hours">Hours</label>
+                    <input type="number" placeholder="Course Hours" class="form-control" name="hours" value="{{$course->hours}}">
+
+                    <label for="price">Price</label>
+                    <input type="number" placeholder="Course Price" class="form-control" name="price" value="{{$course->price}}" >
+
+                    <label for="description">Description</label>
+                    <textarea name="description" id="description" cols="30" rows="10" class="form-control">{{$course->description}}</textarea>
+
+                    <br>
+
+                    <button type="submit" class="btn btn-primary btn-block" name="b_reg">Update Course</button>
+                </div>
+            </form>
+            <!--<a href="index.php"><button type="button" class="btn btn-primary btn-block">Home</button></a>-->
         </div>
-        <footer>
-            <div class="row">
-                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 col-lg-offset-0 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" style="background: gainsboro; text-align: center; margin-top: 10px; padding: 20px;"><p>Copyright Reserved 2019</p></div>
-            </div>
-
-        </footer>
     </div>
+    <footer>
+        <div class="row">
+            <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 col-lg-offset-0 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" style="background: gainsboro; text-align: center; margin-top: 10px; padding: 20px;"><p>Copyright Reserved 2019</p></div>
+        </div>
 
+    </footer>
 </div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery.js"></script>
+<script src="{{asset('js/jquery.js')}}"></script>
+
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/bootstrap.min.js"></script>
+<script src="{{asset('js/bootstrap.min.js')}}"></script>
+
 </body>
 </html>
