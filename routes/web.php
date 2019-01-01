@@ -33,6 +33,8 @@ Route::get('/courses', 'CoursesController@courses');
 
 Route::get('/course/{course_id}/update', 'CoursesController@update');
 
+Route::post('/course/{course_id}/update', 'CoursesController@updateCourse');
+
 Route::get('/course/{course_id}/delete', 'CoursesController@destroy');
 
 
